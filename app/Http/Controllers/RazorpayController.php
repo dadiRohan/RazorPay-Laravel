@@ -14,18 +14,14 @@ class RazorpayController extends Controller
 {    
     public function pay_with_razorpay()
     {        
-
-    	// dd(['1']);
         return view('pay_with_razorpay');
-        // return view('welcome');
     }
  
     public function payment()
     {   
-        // dd(1);
         $input   = Input::all();
-        // $api     = new Api(config('custom.razor_key'), config('custom.razor_secret'));
-        $api     = new Api('rzp_test_shJ9jkSCA3ZLGo','noWG3m415LnypdDqCodoiHAO');
+
+        $api     = new Api($_ENV['razor_key'],$_ENV['razor_secret']);
         // $api     = new Api(env('razor_key'),env('razor_secret'));
         $payment = $api->payment->fetch($input['razorpay_payment_id']);
  
